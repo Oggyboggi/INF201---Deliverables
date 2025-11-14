@@ -1,5 +1,6 @@
 """
 Task1
+
 Complex class
 
 Created by Iver Rannug Fossan and Oscar Wiersdalen Thunold
@@ -53,3 +54,4 @@ class Complex:
     # Reverse multiplication for scalar * Complex
     def __rmul__(self, other):
         return self.__mul__(other)
+
