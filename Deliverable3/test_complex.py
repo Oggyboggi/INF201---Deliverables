@@ -6,14 +6,6 @@ Testsuite for Complex class.
 Created by Iver Rannug Fossan and Oscar Wiersdalen Thunold
 """
 
-"""
-Task 4
-   
-Testsuite for Complex class.
-
-Created by Iver Rannug Fossan and Oscar Wiersdalen Thunold
-"""
-
 from complex import Complex
 
 def test():
@@ -46,3 +38,4 @@ def test():
     
 if __name__ == "__main__":
     test()
+
