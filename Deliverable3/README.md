@@ -11,7 +11,7 @@ Task 1 - [complex.py](complex.py)
 
 Task 2 - [complex_examples.ipynb](complex_examples.ipynb)
 
-Task 4(3) - [test_complex.py](test_complex.py)
+Task 3(4) - [test_complex.py](test_complex.py)
 
 
 Created by Iver Rannug Fossan and Oscar Wiersdalen Thunold
