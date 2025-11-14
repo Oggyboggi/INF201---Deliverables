@@ -1,41 +1,55 @@
 """
-Testsuite for Complex class.
+Task1
+Complex class
 
 Created by Iver Rannug Fossan and Oscar Wiersdalen Thunold
 """
 
-from complex import Complex
 
-
-def test():
-    # Test __repr__
-    assert repr(Complex(1, 2)) == "Complex(1, 2)"
+class Complex:
+    def __init__(self, real, imag=0):
+        self.real = real
+        self.imag = imag
+        
+    # Representation methods
+    def __repr__(self):
+        return f"Complex({self.real}, {self.imag})"
     
-    # Test __str__
-    assert str(Complex(1, 2)) == "1+2i"
-    assert str(Complex(1, -3)) == "1-3i"
-    assert str(Complex(5)) == "5+0i"   # 5 + 0i
-
-    # Test addition
-    assert Complex(1, 2) + Complex(3, 4) == Complex(4, 6)
+    # String representation
+    def __str__(self):
+        if self.imag < 0:
+            return f"{self.real}{self.imag}i"
+        else:
+            return f"{self.real}+{self.imag}i"
+        
+    # Equality check
+    def __eq__(self, other):
+        if not isinstance(other, Complex):
+            return NotImplemented
+        return self.real == other.real and self.imag == other.imag
     
-    # Test subtraction
-    assert Complex(1, 2) - Complex(3, 4) == Complex(-2, -2)
-                                                  
-    # Test multiplication (complex * complex)
-    z = Complex(1, 2)
-    y = Complex(3, 4)
-    assert z * y == Complex(1*3 - 2*4, 1*4 + 2*3)
-
-    # Test scalar multiplication
-    assert Complex(2, 3) * 3 == Complex(6, 9)
-    assert 3 * Complex(2, 4) == Complex(6, 12)
-
-    # Test equality
-    assert Complex(1, 2) == Complex(1, 2)
-    assert Complex(1, 2) != Complex(2, 1)
-
-
-if __name__ == "__main__":
-    test()
-    print("Alle tester bestått!")
+    # Arithmetic operations
+    def __add__(self, other):
+        if not isinstance(other, Complex):
+            return NotImplemented
+        return Complex(self.real + other.real, self.imag + other.imag)
+    
+    # Subtraction
+    def __sub__(self, other):
+        if not isinstance(other, Complex):
+            return NotImplemented
+        return Complex(self.real - other.real, self.imag - other.imag)
+    
+    # Multiplication
+    def __mul__(self, other):
+        if isinstance(other, Complex):
+            a, b = self.real, self.imag
+            c, d = other.real, other.imag
+            return Complex(a*c - b*d, a*d + b*c)
+        elif isinstance(other, (int, float)):
+            return Complex(self.real * other, self.imag * other)
+        return NotImplemented
+    
+    # Reverse multiplication for scalar * Complex
+    def __rmul__(self, other):
+        return self.__mul__(other)
