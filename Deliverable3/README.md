@@ -2,6 +2,8 @@
 
 This folder contains tasks for the third deliverable in INF201!
 
+Contents:
+
 Task 1 - [complex.py](complex.py)
 
 Task 2 - [complex_examples.ipynb](complex_examples.ipynb)
