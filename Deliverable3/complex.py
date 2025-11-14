@@ -1,51 +1,41 @@
-"""""
-Task 1
+"""
+Testsuite for Complex class.
 
-Complex Class
-"""""
-import math
+Created by Iver Rannug Fossan and Oscar Wiersdalen Thunold
+"""
+
+from complex import Complex
 
 
-class Complex:
-    # Constructor
-    def __init__(self, re, im=0):
-        self.re = re
-        self.im = im
-        
-    # Representation
-    def __repr__(self):
-        return f"Complex({self.re}, {self.im})"
+def test():
+    # Test __repr__
+    assert repr(Complex(1, 2)) == "Complex(1, 2)"
     
-    # String conversion
-    def __str__(self):
-        sign = "+" if self.im >= 0 else "-"
-        return f"{self.re}{sign}{abs(self.im)}i"
+    # Test __str__
+    assert str(Complex(1, 2)) == "1+2i"
+    assert str(Complex(1, -3)) == "1-3i"
+    assert str(Complex(5)) == "5+0i"   # 5 + 0i
+
+    # Test addition
+    assert Complex(1, 2) + Complex(3, 4) == Complex(4, 6)
     
-    # Addition
-    def __add__(self, rhs):
-        return Complex(self.re + rhs.re, self.im + rhs.im)
-    
-    # Subtraction
-    def __sub__(self, rhs):
-        return Complex(self.re - rhs.re, self.im - rhs.im)
-    
-    # Multiplication
-    def __mul__(self, rhs):
-        if isinstance(rhs, Complex):
-            re = self.re * rhs.re - self.im * rhs.im
-            im = self.re * rhs.im + self.im * rhs.re
-            return Complex(re, im)
-        elif isinstance(rhs, (int, float)):
-            return Complex(self.re * rhs, self.im * rhs)
-        else:
-            return NotImplemented
-        
-    # Scalarmultiplication
-    def __rmul__(self, lhs):
-        return self * lhs
-    
-    # Equality
-    def __eq__(self, rhs):
-        if isinstance(rhs, Complex):
-            return self.re == rhs.re and self.im == rhs.im
-        return False
+    # Test subtraction
+    assert Complex(1, 2) - Complex(3, 4) == Complex(-2, -2)
+                                                  
+    # Test multiplication (complex * complex)
+    z = Complex(1, 2)
+    y = Complex(3, 4)
+    assert z * y == Complex(1*3 - 2*4, 1*4 + 2*3)
+
+    # Test scalar multiplication
+    assert Complex(2, 3) * 3 == Complex(6, 9)
+    assert 3 * Complex(2, 4) == Complex(6, 12)
+
+    # Test equality
+    assert Complex(1, 2) == Complex(1, 2)
+    assert Complex(1, 2) != Complex(2, 1)
+
+
+if __name__ == "__main__":
+    test()
+    print("Alle tester bestått!")
